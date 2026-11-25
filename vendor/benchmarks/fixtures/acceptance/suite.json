@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "orders-handwritten",
+  "cases": [
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/orders.csv",
+      "expectedPath": "inputs/expected_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-basic"
+    },
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/orders.csv",
+      "expectedPath": "inputs/expected_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-zero-bug"
+    },
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/orders.csv",
+      "expectedPath": "inputs/expected_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-timeout"
+    },
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/orders.csv",
+      "expectedPath": "inputs/expected_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-crash"
+    }
+  ]
+}

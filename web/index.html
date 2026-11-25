@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="documentTitle">EvoAgent · 多智能体协作工作台</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/"><span class="brand-mark">E</span><span>EvoAgent<small data-i18n="brandSubtitle">多智能体协作平台</small></span></a>
+  <div class="team-picker">
+    <label for="team" data-i18n="currentTeam">当前团队</label>
+    <select id="team" aria-label="当前团队" data-i18n-aria="currentTeam"></select>
+    <button class="text-button" id="new-team">＋ <span data-i18n="createTeam">创建团队</span></button>
+    <button class="text-button" id="delete-team" data-i18n="deleteTeam" disabled>批量删除团队</button>
+  </div>
+  <nav class="nav">
+    <button data-view="workspace" class="selected"><span class="nav-icon">▦</span><span data-i18n="navWorkspace">工作台</span></button>
+    <button data-view="agents"><span class="nav-icon">◎</span><span data-i18n="navAgents">Agent 与记忆</span></button>
+    <button data-view="evaluation"><span class="nav-icon">▥</span><span data-i18n="navEvaluation">评测记录</span></button>
+  </nav>
+  <section class="channels"><div class="side-heading" data-i18n="sessions">会话</div><div id="channels"></div></section>
+  <div class="sidebar-foot"><span class="connection" id="connection" data-i18n="connecting">连接中</span><div data-i18n="localPrivate">本地运行 · 私有工作区</div><small id="model-label">DeepSeek / EvoAgent</small></div>
+</aside>
+<main>
+  <header class="topbar">
+    <div><div class="eyebrow" data-i18n="workspaceEyebrow">WORKSPACE</div><h1 id="page-title" data-i18n="pageWorkspace">团队工作台</h1></div>
+    <div class="top-actions">
+      <span class="model-pill" id="model-pill">DeepSeek</span>
+      <button class="button secondary lang-toggle" id="lang-toggle" type="button" title="切换到英文" aria-label="切换到英文">EN</button>
+      <button class="button secondary" id="refresh" data-i18n="refresh">刷新</button>
+    </div>
+  </header>
+  <div id="notice" role="status" class="notice hidden"></div><div id="suite-banner" class="suite-banner hidden"></div>
+  <section id="workspace-view" class="workspace">
+    <article class="chat panel">
+      <header class="panel-header"><div><h2 id="chat-title">团队 · 群聊</h2><p id="chat-subtitle">沟通目标，让专业 Agent 协作完成</p></div><button id="reset" class="button secondary small" data-i18n="newChat">新会话</button></header>
+      <div class="roster" id="roster"></div><div class="messages" id="messages" aria-live="polite"></div>
+      <div class="compose">
+        <div class="compose-options">
+          <select id="mode" aria-label="消息方式" data-i18n-aria="messageMode"><option value="task" data-i18n="taskMode">执行任务</option><option value="chat" data-i18n="chatMode">普通对话</option></select>
+          <select id="budget" aria-label="任务时限，不含等待回复" data-i18n-aria="taskBudget"><option value="900" data-i18n="budget15">15 分钟时限</option><option value="1800" data-i18n="budget30">30 分钟时限</option></select>
+          <label><input id="auto-repair" type="checkbox" checked> <span data-i18n="autoRepair">评审失败后自动返工</span></label>
+          <label><input id="use-memory" type="checkbox" checked> <span data-i18n="useMemory">使用独立记忆</span></label>
+          <button id="samples" class="text-button"><span data-i18n="loadSamples">载入 Mid-Test 题目</span></button>
+        </div>
+        <label class="sr-only" for="prompt" data-i18n="promptAria">消息或任务目标</label>
+        <textarea id="prompt" rows="3" data-i18n-placeholder="promptPlaceholder" placeholder="描述你想完成的目标。团队会自主拆解、执行，并在需要时向你提问。"></textarea>
+        <div class="compose-footer"><span id="compose-hint" data-i18n="composeHint">Enter 发送 · Shift + Enter 换行</span><button id="send" class="button primary" data-i18n="sendTask">发送任务</button></div>
+      </div>
+    </article>
+    <aside class="inspector panel">
+      <header class="panel-header"><div><h2 data-i18n="currentTask">当前任务</h2><p id="run-id">等待新的目标</p></div><div class="run-controls"><button id="pause" class="icon-button" title="暂停任务" aria-label="暂停任务">Ⅱ</button><button id="cancel" class="icon-button" title="取消任务" aria-label="取消任务" data-i18n-title="cancelTask" data-i18n-aria="cancelTask">×</button></div></header>
+      <div id="run-summary" class="run-summary"></div><div id="human-requests"></div><div id="artifacts" class="artifact-section"></div>
+      <div class="tabs" role="tablist" aria-label="任务详情" data-i18n-aria="taskDetails"><button data-tab="tasks" class="selected" role="tab" data-i18n="tabTasks">子任务</button><button data-tab="calls" role="tab" data-i18n="tabCalls">调用记录</button><button data-tab="memory" role="tab" data-i18n="tabMemory">本次记忆</button><button data-tab="questions" role="tab" data-i18n="tabQuestions">协作与问答</button></div>
+      <div id="inspector-content" class="inspector-content"></div>
+      <footer class="history"><label for="history" data-i18n="historyLabel">历史任务</label><select id="history"></select><div><button id="history-live" class="text-button" data-i18n="backToLive">回到当前</button><button id="export" class="text-button" data-i18n="exportRecord">导出记录</button></div></footer>
+    </aside>
+  </section>
+  <section id="agents-view" class="hidden">
+    <div class="section-heading"><div><h2 data-i18n="agentsHeading">Agent 与独立记忆</h2><p data-i18n="agentsDesc">角色、工具权限和经验分别保存。候选经验不会自动成为已验证策略。</p></div><button class="button secondary" id="git-settings" data-i18n="gitSettings">Git 远端设置</button></div>
+    <div id="agent-cards" class="agent-grid"></div>
+    <div class="panel memory-library"><header class="panel-header"><h2 data-i18n="memoryLibrary">记忆库</h2><select id="memory-owner" aria-label="记忆所属 Agent" data-i18n-aria="memoryOwnerAria"></select></header><div id="memory-library"></div></div>
+  </section>
+  <section id="evaluation-view" class="hidden">
+    <div class="section-heading"><div><h2 data-i18n="evaluationHeading">评测与真实记录</h2><p data-i18n="evaluationDesc">执行完成与产品验收分别计数；失败和未评估项保留在分母中。</p></div><button class="button primary" id="start-suite" data-i18n="startSuite">按原始顺序运行 Mid-Test</button></div>
+    <div id="metrics" class="metric-grid"></div>
+    <div class="panel table-panel"><h3 data-i18n="teamRuns">本团队任务记录</h3><div id="evaluation-table"></div></div>
+    <div class="panel table-panel"><h3 data-i18n="suiteDetails">原始 Mid-Test 评测</h3><div id="suite-details"></div></div>
+    <div class="panel table-panel"><h3 data-i18n="benchmarks">历史实验 · 只读</h3><p class="muted" data-i18n="benchmarksDesc">此前三组并行实验与原始题包的逐组顺序协议不同，不能直接比较为同一口径。</p><div id="benchmarks"></div></div>
+  </section>
+  <footer class="app-footer" data-i18n="footer">CrewAI 编排 · DeepSeek 模型 · 真实工具回执 · Docker 隔离执行</footer>
+</main>
+<dialog id="dialog"><div class="dialog-head"><h2 id="dialog-title"></h2><button class="icon-button" id="close-dialog" aria-label="关闭" data-i18n-aria="close" data-i18n-title="close" title="关闭">×</button></div><div id="dialog-content"></div></dialog>
+<script src="/app.js" type="module"></script>
+</body>
+</html>

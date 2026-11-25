@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Original Mid-Test Evaluation</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #1c1c1c; }
+  body {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    color: #eaf0f8;
+    padding: 30px 34px;
+    width: 1080px;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 23px;
+    font-weight: 600;
+    color: #4fd1c5;
+    margin: 0 0 12px;
+    letter-spacing: .4px;
+  }
+  .meta {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #9fb0c8;
+    margin: 0 0 24px 0;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  col.c-case { width: 16%; }
+  col.c-status { width: 12%; }
+  col.c-time { width: 12%; }
+  col.c-tasks { width: 14%; }
+  col.c-calls { width: 14%; }
+  col.c-tokens { width: 18%; }
+  col.c-artifacts { width: 14%; }
+  th, td {
+    padding: 19px 14px;
+    border-bottom: 1px solid #2a3442;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  th {
+    color: #9fb0c8;
+    font-weight: 600;
+    background: #222222;
+    border-top: 1px solid #3a4759;
+    border-bottom: 1px solid #3a4759;
+  }
+  th.num, td.num { text-align: right; }
+  td.status { color: #5ee08a; }
+  tbody tr:hover { background: #242424; }
+  tfoot td {
+    font-weight: 600;
+    color: #4fd1c5;
+    border-top: 1px solid #4fd1c5;
+    border-bottom: none;
+    padding-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>Original Mid-Test Evaluation</h1>
+  <p class="meta">
+    Software 1→2, Newsroom 1→2, Fund 1→2; each task has its own limit; HITL requests remain visible,
+    then default choices and approvals are answered automatically; human reply time is excluded;
+    overtime does not cancel · 25m 39s
+  </p>
+  <table>
+    <colgroup>
+      <col class="c-case"><col class="c-status"><col class="c-time">
+      <col class="c-tasks"><col class="c-calls"><col class="c-tokens"><col class="c-artifacts">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Status</th>
+        <th>Time</th>
+        <th class="num">Subtasks</th>
+        <th class="num">Model Calls</th>
+        <th class="num">Tokens</th>
+        <th class="num">Artifacts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>software-1</td><td class="status">Done</td><td>3m 48s</td><td class="num">4</td><td class="num">40</td><td class="num">827,943</td><td class="num">5</td></tr>
+      <tr><td>software-2</td><td class="status">Done</td><td>3m 38s</td><td class="num">3</td><td class="num">37</td><td class="num">753,132</td><td class="num">9</td></tr>
+      <tr><td>newsroom-1</td><td class="status">Done</td><td>2m 52s</td><td class="num">5</td><td class="num">40</td><td class="num">335,172</td><td class="num">6</td></tr>
+      <tr><td>newsroom-2</td><td class="status">Done</td><td>4m 46s</td><td class="num">5</td><td class="num">71</td><td class="num">1,379,138</td><td class="num">12</td></tr>
+      <tr><td>fund-1</td><td class="status">Done</td><td>3m 33s</td><td class="num">5</td><td class="num">33</td><td class="num">431,330</td><td class="num">5</td></tr>
+      <tr><td>fund-2</td><td class="status">Done</td><td>6m 22s</td><td class="num">4</td><td class="num">65</td><td class="num">1,436,071</td><td class="num">9</td></tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td class="status">6/6 Done</td>
+        <td>25m 39s</td>
+        <td class="num">26</td>
+        <td class="num">286</td>
+        <td class="num">5,162,786</td>
+        <td class="num">46</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>

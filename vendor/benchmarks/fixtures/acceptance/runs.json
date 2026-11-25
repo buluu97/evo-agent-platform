@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "runs": [
+    {
+      "runId": "csv-001",
+      "caseId": "orders-basic",
+      "source": "handwritten",
+      "startedAtMs": 10000,
+      "memoryEnabled": true,
+      "status": "done",
+      "finishedAtMs": 12600,
+      "evidence": {
+        "research": {
+          "taskId": "t-r",
+          "revision": 0,
+          "callId": "call-1-search",
+          "tool": "web.fetch",
+          "status": "success",
+          "sourceUrl": "https://docs.python.org/3/library/csv.html",
+          "returnedUrls": [
+            "https://docs.python.org/3/library/csv.html"
+          ],
+          "conclusion": "Python CSV DictReader maps row fields to names from the header.",
+          "sourceText": "Python CSV file reading and writing documentation for DictReader."
+        },
+        "script": {
+          "taskId": "t-e",
+          "revision": 1,
+          "artifactId": "art-1-script",
+          "sha256": "ea6e613807b903f7d675ffd1c0c169a432387690a620c560af51d7e385bfb902"
+        },
+        "summary": {
+          "taskId": "t-e",
+          "revision": 1,
+          "artifactId": "art-1-summary",
+          "sha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138"
+        },
+        "review": {
+          "taskId": "t-v",
+          "revision": 0,
+          "target": {
+            "taskId": "t-e",
+            "revision": 1,
+            "artifactId": "art-1-script",
+            "sha256": "ea6e613807b903f7d675ffd1c0c169a432387690a620c560af51d7e385bfb902"
+          },
+          "callId": "call-1-review",
+          "tool": "code.test",
+          "status": "success",
+          "sandboxId": "fixture-review-1",
+          "exitCode": 0,
+          "readOnly": true,
+          "inputSha256": "209e62e33272d679ebd70efc9695cfd0416b12c8ea3c99acacf3cc65a33f3ab9",
+          "result": {
+            "taskId": "t-v",
+            "revision": 0,
+            "artifactId": "art-1-review",
+            "sha256": "3e833eca46b31ee18009c1ca49fa5f4170172f2c8f4c702ca61b80f0c33a86ab"
+          }
+        },
+        "report": {
+          "taskId": "t-c",
+          "revision": 0,
+          "artifactId": "art-1-report",
+          "sha256": "981e4d47e4c33966cc273741ad253ade26d30771a353dc4b02a95c24e004d24f"
+        }
+      },
+      "tasks": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "status": "rework",
+          "reviewEvidence": {
+            "verdict": "rework",
+            "reason": "The previous version mishandled zero."
+          }
+        },
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "research",
+          "closed": true,
+          "artifactIds": [],
+          "result": "Python CSV DictReader maps row fields to names from the header."
+        },
+        {
+          "taskId": "t-e",
+          "revision": 1,
+          "status": "done",
+          "ownerAgentId": "executor",
+          "closed": true,
+          "artifactIds": [
+            "art-1-script",
+            "art-1-summary"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ]
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "reviewer",
+          "closed": true,
+          "artifactIds": [
+            "art-1-review"
+          ]
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "coordinator",
+          "closed": true,
+          "artifactIds": [
+            "art-1-report"
+          ]
+        }
+      ],
+      "artifacts": {
+        "art-1-script": {
+          "id": "art-1-script",
+          "runId": "csv-001",
+          "taskId": "t-e",
+          "ownerAgentId": "executor",
+          "name": "summarize_orders.py",
+          "sha256": "ea6e613807b903f7d675ffd1c0c169a432387690a620c560af51d7e385bfb902",
+          "file": "artifacts/orders_correct.py"
+        },
+        "art-1-summary": {
+          "id": "art-1-summary",
+          "runId": "csv-001",
+          "taskId": "t-e",
+          "ownerAgentId": "executor",
+          "name": "summary.json",
+          "sha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138",
+          "file": "inputs/expected_summary.json"
+        },
+        "art-1-review": {
+          "id": "art-1-review",
+          "runId": "csv-001",
+          "taskId": "t-v",
+          "ownerAgentId": "reviewer",
+          "name": "review_summary.json",
+          "sha256": "3e833eca46b31ee18009c1ca49fa5f4170172f2c8f4c702ca61b80f0c33a86ab",
+          "file": "inputs/expected_review_summary.json"
+        },
+        "art-1-report": {
+          "id": "art-1-report",
+          "runId": "csv-001",
+          "taskId": "t-c",
+          "ownerAgentId": "coordinator",
+          "name": "report.md",
+          "sha256": "981e4d47e4c33966cc273741ad253ade26d30771a353dc4b02a95c24e004d24f",
+          "file": "artifacts/report.md"
+        }
+      }
+    },
+    {
+      "runId": "csv-002",
+      "caseId": "orders-zero-bug",
+      "source": "handwritten",
+      "startedAtMs": 20000,
+      "memoryEnabled": true,
+      "status": "done",
+      "finishedAtMs": 22600,
+      "evidence": {
+        "research": {
+          "taskId": "t-r",
+          "revision": 0,
+          "callId": "call-2-search",
+          "tool": "web.fetch",
+          "status": "success",
+          "sourceUrl": "https://docs.python.org/3/library/csv.html",
+          "returnedUrls": [
+            "https://docs.python.org/3/library/csv.html"
+          ],
+          "conclusion": "Python CSV DictReader maps row fields to names from the header.",
+          "sourceText": "Python CSV file reading and writing documentation for DictReader."
+        },
+        "script": {
+          "taskId": "t-e",
+          "revision": 0,
+          "artifactId": "art-2-script",
+          "sha256": "e2c1206cd6ace243573d15881ac48be987826a487b1fe64d40491ad76c5d8620"
+        },
+        "summary": {
+          "taskId": "t-e",
+          "revision": 0,
+          "artifactId": "art-2-summary",
+          "sha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138"
+        },
+        "review": {
+          "taskId": "t-v",
+          "revision": 0,
+          "target": {
+            "taskId": "t-e",
+            "revision": 0,
+            "artifactId": "art-2-script",
+            "sha256": "e2c1206cd6ace243573d15881ac48be987826a487b1fe64d40491ad76c5d8620"
+          },
+          "callId": "call-2-review",
+          "tool": "code.test",
+          "status": "success",
+          "sandboxId": "fixture-review-2",
+          "exitCode": 0,
+          "readOnly": true,
+          "inputSha256": "209e62e33272d679ebd70efc9695cfd0416b12c8ea3c99acacf3cc65a33f3ab9",
+          "result": {
+            "taskId": "t-v",
+            "revision": 0,
+            "artifactId": "art-2-review",
+            "sha256": "24880fc9f44f89dddea1d8c308f4210254f55e4f8b2bb40c6c007f88f0a27734"
+          }
+        },
+        "report": {
+          "taskId": "t-c",
+          "revision": 0,
+          "artifactId": "art-2-report",
+          "sha256": "981e4d47e4c33966cc273741ad253ade26d30771a353dc4b02a95c24e004d24f"
+        }
+      },
+      "tasks": [
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "research",
+          "closed": true,
+          "artifactIds": [],
+          "result": "Python CSV DictReader maps row fields to names from the header."
+        },
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "executor",
+          "closed": true,
+          "artifactIds": [
+            "art-2-script",
+            "art-2-summary"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ]
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "reviewer",
+          "closed": true,
+          "artifactIds": [
+            "art-2-review"
+          ]
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "status": "done",
+          "ownerAgentId": "coordinator",
+          "closed": true,
+          "artifactIds": [
+            "art-2-report"
+          ]
+        }
+      ],
+      "artifacts": {
+        "art-2-script": {
+          "id": "art-2-script",
+          "runId": "csv-002",
+          "taskId": "t-e",
+          "ownerAgentId": "executor",
+          "name": "summarize_orders.py",
+          "sha256": "e2c1206cd6ace243573d15881ac48be987826a487b1fe64d40491ad76c5d8620",
+          "file": "artifacts/orders_zero_bug.py"
+        },
+        "art-2-summary": {
+          "id": "art-2-summary",
+          "runId": "csv-002",
+          "taskId": "t-e",
+          "ownerAgentId": "executor",
+          "name": "summary.json",
+          "sha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138",
+          "file": "inputs/expected_summary.json"
+        },
+        "art-2-review": {
+          "id": "art-2-review",
+          "runId": "csv-002",
+          "taskId": "t-v",
+          "ownerAgentId": "reviewer",
+          "name": "review_summary.json",
+          "sha256": "24880fc9f44f89dddea1d8c308f4210254f55e4f8b2bb40c6c007f88f0a27734",
+          "file": "artifacts/review_zero_bug.json"
+        },
+        "art-2-report": {
+          "id": "art-2-report",
+          "runId": "csv-002",
+          "taskId": "t-c",
+          "ownerAgentId": "coordinator",
+          "name": "report.md",
+          "sha256": "981e4d47e4c33966cc273741ad253ade26d30771a353dc4b02a95c24e004d24f",
+          "file": "artifacts/report.md"
+        }
+      }
+    },
+    {
+      "runId": "csv-003",
+      "caseId": "orders-timeout",
+      "source": "handwritten",
+      "startedAtMs": 30000,
+      "memoryEnabled": true,
+      "status": "timeout",
+      "deadlineAtMs": 37000,
+      "errorCode": "model_timeout",
+      "errorReason": "The model did not finish before the recorded deadline.",
+      "humanWaits": [
+        {
+          "startedAtMs": 31000
+        }
+      ],
+      "tasks": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "ownerAgentId": "executor",
+          "status": "running"
+        }
+      ]
+    },
+    {
+      "runId": "csv-004",
+      "caseId": "orders-crash",
+      "source": "handwritten",
+      "startedAtMs": 40000,
+      "memoryEnabled": true,
+      "status": "crashed",
+      "terminatedAtMs": 41200,
+      "errorCode": "worker_crash",
+      "errorReason": "The worker exited during planning.",
+      "tasks": [
+        {
+          "taskId": "planner",
+          "revision": 0,
+          "status": "running",
+          "planning": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #1c1c1c;
+    color: #eaf0f8;
+    font-family: Menlo, monospace;
+    padding: 26px 30px 22px;
+    width: 1380px;
+  }
+  h1 { font-size: 21px; font-weight: 600; color: #4fd1c5; margin: 0 0 4px; letter-spacing: .5px; }
+  .sub { font-size: 11px; color: #6f8299; margin: 0 0 14px; }
+  svg { display: block; }
+  .example {
+    margin-top: 18px;
+    background: #141414;
+    border: 1px solid #2a3a52;
+    border-radius: 10px;
+    padding: 14px 18px 16px;
+  }
+  .example h2 { font-size: 12px; font-weight: 500; color: #9fb0c8; margin: 0 0 10px; }
+  pre { margin: 0; font-size: 12px; line-height: 1.62; color: #d7e2f0; white-space: pre-wrap; }
+  .k { color: #7aa2ff; }
+  .s { color: #f9e795; }
+  .c { color: #6f8299; }
+  .g { color: #5ee08a; }
+  .foot { margin-top: 12px; font-size: 10px; color: #6f8299; line-height: 1.6; }
+</style>
+</head>
+<body>
+  <h1>ReAct Tool-Calling Protocol</h1>
+  <p class="sub">One operation per turn · Observation comes only from real runtime receipts</p>
+
+  <svg width="1320" height="230" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 z" fill="#9fb0c8"/>
+      </marker>
+      <marker id="arrowdim" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 z" fill="#5a6b82"/>
+      </marker>
+    </defs>
+
+    <!-- DSML source -->
+    <rect x="232" y="14" width="150" height="40" rx="7" fill="#252525" stroke="#5a6b82" stroke-width="1.4"/>
+    <text x="307" y="39" text-anchor="middle" fill="#9fb0c8" font-family="Menlo, monospace" font-size="13">DSML invoke</text>
+    <line x1="307" y1="54" x2="307" y2="94" stroke="#5a6b82" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrowdim)"/>
+    <text x="316" y="78" fill="#6f8299" font-family="Menlo, monospace" font-size="10">normalize_dsml</text>
+
+    <!-- main row y=98..142 -->
+    <rect x="20" y="98" width="110" height="44" rx="7" fill="#252525" stroke="#9fb0c8" stroke-width="1.4"/>
+    <text x="75" y="125" text-anchor="middle" fill="#eaf0f8" font-family="Menlo, monospace" font-size="13">Thought</text>
+
+    <rect x="210" y="98" width="150" height="44" rx="7" fill="#252525" stroke="#4fd1c5" stroke-width="1.6"/>
+    <text x="285" y="125" text-anchor="middle" fill="#4fd1c5" font-family="Menlo, monospace" font-size="13">Action: gateway</text>
+
+    <rect x="440" y="98" width="130" height="44" rx="7" fill="#252525" stroke="#4fd1c5" stroke-width="1.4"/>
+    <text x="505" y="125" text-anchor="middle" fill="#eaf0f8" font-family="Menlo, monospace" font-size="13">Action Input</text>
+
+    <rect x="650" y="98" width="110" height="44" rx="7" fill="#252525" stroke="#7aa2ff" stroke-width="1.4"/>
+    <text x="705" y="125" text-anchor="middle" fill="#7aa2ff" font-family="Menlo, monospace" font-size="13">Runtime</text>
+
+    <rect x="840" y="98" width="130" height="44" rx="7" fill="#252525" stroke="#5ee08a" stroke-width="1.4"/>
+    <text x="905" y="125" text-anchor="middle" fill="#5ee08a" font-family="Menlo, monospace" font-size="13">Observation</text>
+
+    <rect x="1050" y="98" width="80" height="44" rx="7" fill="#252525" stroke="#ffb454" stroke-width="1.4"/>
+    <text x="1090" y="125" text-anchor="middle" fill="#ffb454" font-family="Menlo, monospace" font-size="13">More?</text>
+
+    <rect x="1210" y="98" width="90" height="44" rx="7" fill="#252525" stroke="#c792ea" stroke-width="1.4"/>
+    <text x="1255" y="122" text-anchor="middle" fill="#c792ea" font-family="Menlo, monospace" font-size="12">Final</text>
+    <text x="1255" y="136" text-anchor="middle" fill="#c792ea" font-family="Menlo, monospace" font-size="12">Answer</text>
+
+    <!-- arrows -->
+    <line x1="130" y1="120" x2="204" y2="120" stroke="#9fb0c8" stroke-width="1.4" marker-end="url(#arrow)"/>
+    <line x1="360" y1="120" x2="434" y2="120" stroke="#9fb0c8" stroke-width="1.4" marker-end="url(#arrow)"/>
+    <line x1="570" y1="120" x2="644" y2="120" stroke="#9fb0c8" stroke-width="1.4" marker-end="url(#arrow)"/>
+    <line x1="760" y1="120" x2="834" y2="120" stroke="#9fb0c8" stroke-width="1.4" marker-end="url(#arrow)"/>
+    <line x1="970" y1="120" x2="1204" y2="120" stroke="#9fb0c8" stroke-width="1.4" marker-end="url(#arrow)"/>
+    <text x="1172" y="112" text-anchor="middle" fill="#9fb0c8" font-family="Menlo, monospace" font-size="10">no</text>
+
+    <!-- loop back -->
+    <path d="M1090 142 L1090 184 L75 184 L75 146" fill="none" stroke="#6f8299" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+    <text x="582" y="178" text-anchor="middle" fill="#9fb0c8" font-family="Menlo, monospace" font-size="10">yes — next turn</text>
+
+    <!-- runtime receipt annotation -->
+    <text x="705" y="166" text-anchor="middle" fill="#6f8299" font-family="Menlo, monospace" font-size="10">real receipt only</text>
+  </svg>
+
+  <div class="example">
+    <h2>EXAMPLE · fund-2 / Build HTML slide deck</h2>
+<pre><span class="k">Thought</span>:   Write the semiconductor deck from research artifacts
+<span class="k">Action</span>:    gateway
+<span class="k">Action Input</span>: {<span class="s">"operation"</span>:<span class="s">"file.write"</span>,<span class="s">"arguments"</span>:{<span class="s">"path"</span>:<span class="s">"deck/semiconductor_presentation.html"</span>,<span class="s">"content"</span>:<span class="s">"&lt;!DOCTYPE html&gt;..."</span>}}
+<span class="k">Observation</span>:  {<span class="s">"ok"</span>:<span class="g">true</span>,<span class="s">"sha256"</span>:<span class="s">"a1b2c3..."</span>,<span class="s">"bytes"</span>:<span class="g">5112</span>}
+<span class="k">Final Answer</span>: Published deck/semiconductor_presentation.html; browser check passed</pre>
+  </div>
+
+  <p class="foot">CrewAI ReAct syntax is the protocol reference · DeepSeek DSML is normalized into Action / Action Input · runtime, not the model, supplies every Observation.</p>
+</body>
+</html>

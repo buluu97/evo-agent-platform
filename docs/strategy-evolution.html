@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Strategy evolution</title><style>
+*{box-sizing:border-box}body{margin:0;background:#1c1c1c;color:white}svg{display:block;width:min(100%,760px);height:auto;margin:auto;font-family:Inter,Arial,sans-serif}text{fill:white;text-anchor:middle;font-size:16px}.state{fill:#fc6634;font:600 19px Menlo,Consolas,monospace}.wire{fill:none;stroke:white;stroke-width:1.5}.node{fill:#1c1c1c;stroke:white;stroke-width:1.5}
+</style></head><body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 164" role="img" aria-labelledby="title desc">
+<title id="title">How a strategy becomes verified</title><desc id="desc">A completed subtask generates a candidate by task signature. An agent can also propose a candidate. A matching signature with two consecutive successes on distinct subtasks qualifies for automatic verification. Human confirmation can also verify a candidate.</desc>
+<defs><marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5 0 10Z" fill="white"/></marker></defs>
+<g class="node">
+<rect x="12" y="25" width="158" height="52" rx="9"/>
+<rect x="12" y="95" width="158" height="52" rx="9"/>
+<rect x="215" y="38" width="136" height="96" rx="11"/>
+<rect x="627" y="38" width="121" height="96" rx="11"/>
+</g>
+<g class="wire" marker-end="url(#tip)">
+<path d="M170 55H211"/><path d="M170 117H211"/>
+<path d="M351 55H623"/><path d="M351 117H623"/>
+</g>
+<text x="91" y="47">Subtask done</text>
+<text x="91" y="66" style="font-size:13px">Group by signature</text>
+<text x="91" y="117">Agent proposes</text>
+<text x="91" y="136" style="font:13px Menlo,monospace">memory.propose</text>
+<text class="state" style="fill:#ffd54a" x="283" y="92">candidate</text>
+<text class="state" style="fill:#64dc92" x="687" y="92">verified</text>
+<text x="489" y="24">Two consecutive successes</text>
+<text x="489" y="43" style="font-size:13px">Distinct subtasks, same signature</text>
+<text x="489" y="106">Human confirmation</text>
+</svg></body></html>

@@ -1,0 +1,703 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "orders-handwritten",
+  "batchId": "acceptance-b08ce065cda04aab892e9610f62e95b9",
+  "cases": [
+    {
+      "caseId": "orders-basic",
+      "runId": "csv-001",
+      "source": "handwritten",
+      "executionStatus": "done",
+      "goalVerdict": "pass",
+      "errorCode": null,
+      "errorReason": null,
+      "elapsedMs": 2600,
+      "humanWaitMs": 0,
+      "verifierMs": 848.173,
+      "verifierType": "orders-csv",
+      "checks": [
+        {
+          "checkId": "S1",
+          "verdict": "pass",
+          "reason": "Research recorded a successful tool call, public source and CSV finding.",
+          "taskRefs": [
+            {
+              "taskId": "t-r",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "call-1-search"
+          ],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S2",
+          "verdict": "pass",
+          "reason": "The registered summary and isolated main rerun both match the five expected values.",
+          "taskRefs": [
+            {
+              "taskId": "t-e",
+              "revision": 1
+            }
+          ],
+          "evidenceIds": [
+            "art-1-script",
+            "art-1-summary",
+            "evo-f601dc32abea4bf0a29032e2231c41e4"
+          ],
+          "errorCode": null,
+          "details": {
+            "scriptSha256": "ea6e613807b903f7d675ffd1c0c169a432387690a620c560af51d7e385bfb902",
+            "inputSha256": "d05160124590f6f59c7b10551e8ae9980669c956fdbd08c399c3dae65ae216ff",
+            "summarySha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138",
+            "rerunSandboxId": "evo-f601dc32abea4bf0a29032e2231c41e4",
+            "expected": {
+              "total_rows": 6,
+              "valid_rows": 4,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 1,
+              "total_amount_cents": 2250
+            },
+            "observed": {
+              "total_rows": 6,
+              "valid_rows": 4,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 1,
+              "total_amount_cents": 2250
+            }
+          }
+        },
+        {
+          "checkId": "S3",
+          "verdict": "pass",
+          "reason": "The Reviewer result and a fresh isolated rerun match the independent input and current script.",
+          "taskRefs": [
+            {
+              "taskId": "t-v",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "call-1-review",
+            "fixture-review-1",
+            "art-1-script",
+            "art-1-review",
+            "evo-f06e20587d584c16888161a82b4939ea"
+          ],
+          "errorCode": null,
+          "details": {
+            "scriptSha256": "ea6e613807b903f7d675ffd1c0c169a432387690a620c560af51d7e385bfb902",
+            "inputSha256": "209e62e33272d679ebd70efc9695cfd0416b12c8ea3c99acacf3cc65a33f3ab9",
+            "reviewOutputSha256": "3e833eca46b31ee18009c1ca49fa5f4170172f2c8f4c702ca61b80f0c33a86ab",
+            "rerunSandboxId": "evo-f06e20587d584c16888161a82b4939ea",
+            "expected": {
+              "total_rows": 4,
+              "valid_rows": 2,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 1,
+              "total_amount_cents": 7
+            },
+            "observed": {
+              "total_rows": 4,
+              "valid_rows": 2,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 1,
+              "total_amount_cents": 7
+            }
+          }
+        },
+        {
+          "checkId": "S4",
+          "verdict": "pass",
+          "reason": "The Markdown report contains the counting rules, expected values, source and review outcome.",
+          "taskRefs": [
+            {
+              "taskId": "t-c",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "art-1-report"
+          ],
+          "errorCode": null,
+          "details": null
+        }
+      ],
+      "tasks": [
+        {
+          "taskId": "t-e",
+          "revision": 1,
+          "ownerAgentId": "executor",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "The registered summary and isolated main rerun both match the five expected values.",
+          "checkIds": [
+            "S2"
+          ],
+          "evidenceIds": [
+            "art-1-script",
+            "art-1-summary",
+            "evo-f601dc32abea4bf0a29032e2231c41e4"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "ownerAgentId": "research",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "Research recorded a successful tool call, public source and CSV finding.",
+          "checkIds": [
+            "S1"
+          ],
+          "evidenceIds": [
+            "call-1-search"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "ownerAgentId": "reviewer",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "The Reviewer result and a fresh isolated rerun match the independent input and current script.",
+          "checkIds": [
+            "S3"
+          ],
+          "evidenceIds": [
+            "art-1-review",
+            "art-1-script",
+            "call-1-review",
+            "evo-f06e20587d584c16888161a82b4939ea",
+            "fixture-review-1"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "ownerAgentId": "coordinator",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "The Markdown report contains the counting rules, expected values, source and review outcome.",
+          "checkIds": [
+            "S4"
+          ],
+          "evidenceIds": [
+            "art-1-report"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        }
+      ],
+      "feedback": [
+        {
+          "taskId": "t-e",
+          "revision": 1,
+          "ownerAgentId": "executor",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "The registered summary and isolated main rerun both match the five expected values.",
+          "checkIds": [
+            "S2"
+          ],
+          "evidenceIds": [
+            "art-1-script",
+            "art-1-summary",
+            "evo-f601dc32abea4bf0a29032e2231c41e4"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ],
+          "errorCode": null,
+          "errorReason": null,
+          "runId": "csv-001",
+          "stage": "final"
+        }
+      ],
+      "taskRevisionHistory": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "status": "rework",
+          "reviewEvidence": {
+            "verdict": "rework",
+            "reason": "The previous version mishandled zero."
+          }
+        },
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": []
+        },
+        {
+          "taskId": "t-e",
+          "revision": 1,
+          "status": "done",
+          "artifactIds": [
+            "art-1-script",
+            "art-1-summary"
+          ]
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": [
+            "art-1-review"
+          ]
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": [
+            "art-1-report"
+          ]
+        }
+      ],
+      "memory": {
+        "enabled": true,
+        "condition": null,
+        "boundary": null,
+        "changes": []
+      }
+    },
+    {
+      "caseId": "orders-zero-bug",
+      "runId": "csv-002",
+      "source": "handwritten",
+      "executionStatus": "done",
+      "goalVerdict": "fail",
+      "errorCode": null,
+      "errorReason": null,
+      "elapsedMs": 2600,
+      "humanWaitMs": 0,
+      "verifierMs": 299.704,
+      "verifierType": "orders-csv",
+      "checks": [
+        {
+          "checkId": "S1",
+          "verdict": "pass",
+          "reason": "Research recorded a successful tool call, public source and CSV finding.",
+          "taskRefs": [
+            {
+              "taskId": "t-r",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "call-2-search"
+          ],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S2",
+          "verdict": "fail",
+          "reason": "Independent rerun: valid_rows expected 4, received 3; invalid_amount_rows expected 1, received 2.",
+          "taskRefs": [
+            {
+              "taskId": "t-e",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "art-2-script",
+            "art-2-summary",
+            "evo-446574afe967463bb91e7b06cb07de25"
+          ],
+          "errorCode": "rerun_mismatch",
+          "details": {
+            "scriptSha256": "e2c1206cd6ace243573d15881ac48be987826a487b1fe64d40491ad76c5d8620",
+            "inputSha256": "d05160124590f6f59c7b10551e8ae9980669c956fdbd08c399c3dae65ae216ff",
+            "summarySha256": "dc2be8f4e396961cf226cf14786718916ff1f0e72f04a5a0f696e30dbd1bc138",
+            "rerunSandboxId": "evo-446574afe967463bb91e7b06cb07de25",
+            "expected": {
+              "total_rows": 6,
+              "valid_rows": 4,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 1,
+              "total_amount_cents": 2250
+            },
+            "observed": {
+              "total_rows": 6,
+              "valid_rows": 3,
+              "missing_amount_rows": 1,
+              "invalid_amount_rows": 2,
+              "total_amount_cents": 2250
+            }
+          }
+        },
+        {
+          "checkId": "S3",
+          "verdict": "fail",
+          "reason": "Independent review: valid_rows expected 2, received 1; invalid_amount_rows expected 1, received 2.",
+          "taskRefs": [
+            {
+              "taskId": "t-v",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "call-2-review",
+            "fixture-review-2",
+            "art-2-script",
+            "art-2-review"
+          ],
+          "errorCode": "review_mismatch",
+          "details": null
+        },
+        {
+          "checkId": "S4",
+          "verdict": "fail",
+          "reason": "The report is missing or misstating the independently assessed outcome in Review.",
+          "taskRefs": [
+            {
+              "taskId": "t-c",
+              "revision": 0
+            }
+          ],
+          "evidenceIds": [
+            "art-2-report"
+          ],
+          "errorCode": "report_content",
+          "details": null
+        }
+      ],
+      "tasks": [
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "ownerAgentId": "research",
+          "executionStatus": "done",
+          "verdict": "pass",
+          "reason": "Research recorded a successful tool call, public source and CSV finding.",
+          "checkIds": [
+            "S1"
+          ],
+          "evidenceIds": [
+            "call-2-search"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "ownerAgentId": "executor",
+          "executionStatus": "done",
+          "verdict": "fail",
+          "reason": "Independent rerun: valid_rows expected 4, received 3; invalid_amount_rows expected 1, received 2.",
+          "checkIds": [
+            "S2"
+          ],
+          "evidenceIds": [
+            "art-2-script",
+            "art-2-summary",
+            "evo-446574afe967463bb91e7b06cb07de25"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "ownerAgentId": "reviewer",
+          "executionStatus": "done",
+          "verdict": "fail",
+          "reason": "Independent review: valid_rows expected 2, received 1; invalid_amount_rows expected 1, received 2.",
+          "checkIds": [
+            "S3"
+          ],
+          "evidenceIds": [
+            "art-2-review",
+            "art-2-script",
+            "call-2-review",
+            "fixture-review-2"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "ownerAgentId": "coordinator",
+          "executionStatus": "done",
+          "verdict": "fail",
+          "reason": "The report is missing or misstating the independently assessed outcome in Review.",
+          "checkIds": [
+            "S4"
+          ],
+          "evidenceIds": [
+            "art-2-report"
+          ],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        }
+      ],
+      "feedback": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "ownerAgentId": "executor",
+          "executionStatus": "done",
+          "verdict": "fail",
+          "reason": "Independent rerun: valid_rows expected 4, received 3; invalid_amount_rows expected 1, received 2.",
+          "checkIds": [
+            "S2"
+          ],
+          "evidenceIds": [
+            "art-2-script",
+            "art-2-summary",
+            "evo-446574afe967463bb91e7b06cb07de25"
+          ],
+          "memoryIds": [
+            "mem-zero"
+          ],
+          "errorCode": null,
+          "errorReason": null,
+          "runId": "csv-002",
+          "stage": "final"
+        }
+      ],
+      "taskRevisionHistory": [
+        {
+          "taskId": "t-r",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": []
+        },
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": [
+            "art-2-script",
+            "art-2-summary"
+          ]
+        },
+        {
+          "taskId": "t-v",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": [
+            "art-2-review"
+          ]
+        },
+        {
+          "taskId": "t-c",
+          "revision": 0,
+          "status": "done",
+          "artifactIds": [
+            "art-2-report"
+          ]
+        }
+      ],
+      "memory": {
+        "enabled": true,
+        "condition": null,
+        "boundary": null,
+        "changes": []
+      }
+    },
+    {
+      "caseId": "orders-timeout",
+      "runId": "csv-003",
+      "source": "handwritten",
+      "executionStatus": "timeout",
+      "goalVerdict": "fail",
+      "errorCode": "model_timeout",
+      "errorReason": "The model did not finish before the recorded deadline.",
+      "elapsedMs": 7000,
+      "humanWaitMs": 6000,
+      "verifierMs": 0.012,
+      "verifierType": "orders-csv",
+      "checks": [
+        {
+          "checkId": "S1",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S2",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S3",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S4",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        }
+      ],
+      "tasks": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "ownerAgentId": "executor",
+          "executionStatus": "running",
+          "verdict": "unassessed",
+          "reason": "No independent evidence was bound to this task.",
+          "checkIds": [],
+          "evidenceIds": [],
+          "memoryIds": [],
+          "errorCode": null,
+          "errorReason": null
+        }
+      ],
+      "feedback": [],
+      "taskRevisionHistory": [
+        {
+          "taskId": "t-e",
+          "revision": 0,
+          "status": "running"
+        }
+      ],
+      "memory": {
+        "enabled": true,
+        "condition": null,
+        "boundary": null,
+        "changes": []
+      }
+    },
+    {
+      "caseId": "orders-crash",
+      "runId": "csv-004",
+      "source": "handwritten",
+      "executionStatus": "crashed",
+      "goalVerdict": "fail",
+      "errorCode": "worker_crash",
+      "errorReason": "The worker exited during planning.",
+      "elapsedMs": 1200,
+      "humanWaitMs": 0,
+      "verifierMs": 0.007,
+      "verifierType": "orders-csv",
+      "checks": [
+        {
+          "checkId": "S1",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S2",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S3",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        },
+        {
+          "checkId": "S4",
+          "verdict": "unassessed",
+          "reason": "A task and revision binding is required.",
+          "taskRefs": [],
+          "evidenceIds": [],
+          "errorCode": null,
+          "details": null
+        }
+      ],
+      "tasks": [],
+      "feedback": [],
+      "taskRevisionHistory": [],
+      "memory": {
+        "enabled": true,
+        "condition": null,
+        "boundary": null,
+        "changes": []
+      }
+    }
+  ],
+  "summary": {
+    "overallGoals": {
+      "passed": 1,
+      "failed": 3,
+      "unassessed": 0,
+      "total": 4,
+      "rate": 0.25
+    },
+    "businessTasks": {
+      "passed": 5,
+      "failed": 3,
+      "unassessed": 1,
+      "total": 9,
+      "rate": 0.5555555555555556
+    },
+    "fixedChecks": {
+      "passed": 5,
+      "failed": 3,
+      "unassessed": 8,
+      "total": 16,
+      "rate": 0.3125
+    },
+    "executionStates": {
+      "done": 2,
+      "timeout": 1,
+      "crashed": 1
+    },
+    "failureModes": {
+      "model_timeout": 1,
+      "worker_crash": 1,
+      "rerun_mismatch": 1,
+      "review_mismatch": 1,
+      "report_content": 1
+    },
+    "elapsedMs": 13400,
+    "humanWaitMs": 6000,
+    "verifierMs": 1147.896
+  }
+}

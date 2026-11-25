@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "d6c33900af82d42df263a012124b83526f9bd559",
+  "sourceRoot": "repository source snapshot at sourceCommit",
+  "toolAndProviderSnapshot": "vendor/",
+  "configSource": "config-deepseek/.env (local only; excluded from Git)",
+  "secretsCopied": false,
+  "sourceRepository": "https://github.com/JunlangHuang004/evo-agent-platform",
+  "publicationBaseCommit": "eabcf7a832213d47ad45d61aa506845cf650196a"
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Semiconductor Deck — Task Dependency Graph</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  html, body {
+    margin: 0;
+    background: #1c1c1c;
+    color: #e5e5e5;
+    font-family: Menlo, Monaco, Consolas, monospace;
+  }
+  .wrap { padding: 24px; }
+  h1 { font-size: 16px; font-weight: 600; letter-spacing: .3px; }
+  .mermaid { font-family: Menlo, Monaco, Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Task: Browser-based semiconductor industry deck for fund team</h1>
+
+  <pre class="mermaid">
+%%{init: {
+  "theme": "dark",
+  "fontFamily": "Menlo",
+  "themeVariables": {
+    "background": "#1c1c1c",
+    "mainBkg": "#262626",
+    "nodeBorder": "#525252",
+    "titleColor": "#e5e5e5",
+    "textColor": "#e5e5e5",
+    "lineColor": "#737373",
+    "primaryTextColor": "#e5e5e5",
+    "primaryBorderColor": "#525252",
+    "secondaryTextColor": "#a3a3a3"
+  }
+}%%
+
+flowchart TD
+  brief(["t0 / brief<br/>fund team ask"])
+  research["t1 / research<br/>out: semiconductor_research.md"]
+  data["t2 / data_clean<br/>reads semiconductor_research.md<br/>out: semiconductor_data.json"]
+  narrative["t3 / narrative<br/>reads semiconductor_data.json<br/>out: slide_outline.md"]
+  charts["t4 / charts<br/>reads slide_outline.md<br/>out: chart_specs.json"]
+  build["t5 / build_slides<br/>reads slide_outline.md, chart_specs.json<br/>out: index.html"]
+  verify["t6 / verify_deck<br/>reads index.html<br/>out: verify_report.md"]
+  review["t7 / review<br/>reads index.html, verify_report.md<br/>out: review_notes.md"]
+  final(["t8 / final_deck<br/>index.html + evidence"])
+
+  brief --> research
+  research --> data
+  data --> narrative
+  narrative --> charts
+  narrative --> build
+  charts --> build
+  build --> verify
+  verify --> review
+  review --> final
+
+  classDef io fill:#171717,stroke:#404040,color:#d4d4d4;
+  classDef agent fill:#222222,stroke:#525252,color:#e5e5e5;
+  classDef finish fill:#0f0f0f,stroke:#6b7280,color:#fafafa;
+  class brief,final io;
+  class research,data,narrative,charts,build,verify,review agent;
+  class final finish;
+</pre>
+</div>
+
+<script>
+  mermaid.initialize({ startOnLoad: true, securityLevel: "loose" });
+</script>
+</body>
+</html>

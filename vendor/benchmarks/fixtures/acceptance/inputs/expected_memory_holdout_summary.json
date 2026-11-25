@@ -1,0 +1,7 @@
+{
+  "total_rows": 5,
+  "valid_rows": 3,
+  "missing_amount_rows": 1,
+  "invalid_amount_rows": 1,
+  "total_amount_cents": 40
+}

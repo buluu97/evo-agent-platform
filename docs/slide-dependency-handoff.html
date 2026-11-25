@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How t3 receives upstream results</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#1c1c1c;color:white}body{min-height:100vh;display:grid;place-items:center}svg{display:block;width:100%;max-height:100vh;font-family:Inter,Arial,sans-serif}text{fill:white}.box{fill:#1c1c1c;stroke:white;stroke-width:2}.wire{fill:none;stroke:white;stroke-width:2.5}.accent{fill:#fc6634}.mono{font-family:ui-monospace,Consolas,monospace}.label{font-size:24px}.heading{font-size:34px;font-weight:650}@media print{@page{size:16in 9in;margin:0}*{print-color-adjust:exact}}
+</style></head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+<title id="title">How t3 receives upstream results</title>
+<desc id="desc">The marketing agent starts t3 only when industry research and the investment view are both done. It receives taskId, agentId and a short result for each dependency. If either task fails, t3 is blocked.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path fill="white" d="M0 0 10 5 0 10Z"/></marker></defs>
+<text x="70" y="108" font-size="60" font-weight="700" letter-spacing="-2">How t3 receives upstream results</text>
+<text x="72" y="169" class="mono accent" font-size="28">t3.dependsOn = ["t1", "t2"]</text>
+<g class="wire"><path d="M412 292H476V380M412 468H476V380"/><path d="M476 380H547" marker-end="url(#arrow)"/><path d="M826 380H948" marker-end="url(#arrow)"/><path d="M687 458V635" marker-end="url(#arrow)"/></g>
+<g class="box"><rect x="70" y="227" width="342" height="130" rx="12"/><rect x="70" y="403" width="342" height="130" rx="12"/><path d="M551 380 687 301 823 380 687 459Z"/><rect x="952" y="244" width="420" height="294" rx="12"/><rect x="555" y="641" width="264" height="74" rx="12"/></g>
+<text x="94" y="270" class="mono accent label">t1 · research</text><text x="94" y="320" class="heading">Industry research</text>
+<text x="94" y="446" class="mono accent label">t2 · fund_manager</text><text x="94" y="496" class="heading">Investment view</text>
+<text x="687" y="389" text-anchor="middle" font-size="28" font-weight="650">Both done?</text>
+<text x="887" y="357" text-anchor="middle" class="accent label">Yes</text>
+<text x="952" y="220" class="accent label">Start t3</text>
+<text x="980" y="292" class="mono accent label">t3 · marketing</text><text x="980" y="345" class="heading">Build slide deck</text>
+<path d="M980 375H1344" class="wire"/>
+<text x="980" y="416" class="mono accent label">DEPENDENCIES</text>
+<text x="980" y="458" font-size="23">One entry per upstream task</text>
+<text x="980" y="502" class="mono" font-size="22">taskId · agentId · result</text>
+<text x="708" y="565" class="accent label">Either fails</text>
+<text x="687" y="688" text-anchor="middle" class="mono" font-size="29">t3 · blocked</text>
+</svg></body></html>

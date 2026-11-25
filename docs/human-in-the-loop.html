@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Human-in-the-Loop</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#1c1c1c;color:#fff;font:clamp(15px,1.4vw,24px)/1.4 Inter,Arial,sans-serif}main{max-width:1600px;margin:auto;padding:3vw 4vw}h1{font-size:2.45em;letter-spacing:-.04em;margin:0 0 .45em}h2{font-size:1.42em;margin:0}p{margin:.25em 0 .85em}section+section{border-top:1px solid white;margin-top:1.5em;padding-top:1.25em}ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2em;list-style:none;margin:0;padding:0}li{border:1px solid white;border-radius:8px;padding:.85em .9em;position:relative}li+li:before{content:'→';position:absolute;left:-1.4em;top:50%;transform:translateY(-50%);color:white;font-size:1.2em}strong{display:block;color:#fc6634;font-size:1.04em;margin-bottom:.4em}code{font-family:Menlo,Consolas,monospace;font-size:.91em}details{margin-top:1.5em;font-size:.72em}summary{cursor:pointer}details p{overflow-wrap:anywhere}@media(max-width:700px){main{padding:20px}ol{grid-template-columns:1fr;gap:1.7em}li+li:before{content:'↓';top:-1.45em;left:1em;transform:none}}@media print{@page{size:16in 9in;margin:0}*{print-color-adjust:exact}details{display:none}}
+</style></head><body><main><h1>Human-in-the-Loop</h1>
+<section><h2>When key information is missing</h2><p>Semiconductor slides · The fund manager could not verify the requested figures.</p>
+<ol><li><strong><code>ask_user</code></strong>A: Use labelled assumptions.<br>B: Wait for source figures.</li>
+<li><strong><code>waiting_human</code></strong>The slide repair paused for 56 seconds.</li>
+<li><strong>User chose A</strong>Label assumptions and mark source URLs as unverified.</li>
+<li><strong>Resume repair</strong>Patch and publish the slides. Risk review passed for the new version.</li></ol></section>
+<section><h2>Before a critical write</h2><p>Investment proposal · Marketing needed to replace <code>client_intake_brief.md</code> after a failed review.</p>
+<ol><li><strong><code>needsApproval</code></strong>The gateway intercepted a <code>file.write</code> overwrite.</li>
+<li><strong><code>waiting_human</code></strong>Approval specified the path, current hash and replacement text.</li>
+<li><strong>User approved</strong>Permission applied to this exact write.</li>
+<li><strong>Execute write</strong>Write and publish the revision. Risk review passed for the new file.</li></ol></section>
+<details><summary>Run references</summary><p>Clarification · <code>run-81ab713235664e1e / repair-ca442874fd8f418e / question-54ead1f394bb4938</code> · Published hash <code>4fe8873c…</code></p><p>Approval · <code>run-2995c4f6ff954da7 / repair-094aa624363a4065 / question-877f668adc234b77</code> · File hash <code>c4a78eec… → a248a301…</code></p></details>
+</main></body></html>

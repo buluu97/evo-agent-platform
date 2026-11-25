@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "orders-followups",
+  "cases": [
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/clarification_orders.csv",
+      "expectedPath": "inputs/expected_clarification_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_signed_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b",
+        "\\bnegative\\b"
+      ],
+      "caseId": "orders-clarification"
+    },
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/memory_holdout_orders.csv",
+      "expectedPath": "inputs/expected_memory_holdout_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-memory-off"
+    },
+    {
+      "verifier": "orders-csv",
+      "inputPath": "inputs/memory_holdout_orders.csv",
+      "expectedPath": "inputs/expected_memory_holdout_summary.json",
+      "reviewInputPath": "inputs/review_orders.csv",
+      "reviewExpectedPath": "inputs/expected_review_summary.json",
+      "methodPatterns": [
+        "\\bheader\\b",
+        "\\btrim\\b",
+        "\\bmissing\\b",
+        "\\bASCII digits\\b",
+        "\\bzero\\b",
+        "\\binvalid\\b",
+        "\\bcents\\b"
+      ],
+      "caseId": "orders-memory-on"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Environments, caches, and per-machine execution state
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.platform/
+.runtime/
+config-deepseek/.runtime/
+.DS_Store
+
+# Generated ledgers, provider diagnostics, and products
+runs/
+evidence/
+deliverables/
+*-deliverables/
+*.zip
+*.log
+*.sqlite*
+*.db
+*-smoke*.json
+*-probe.json
+results*.json
+delivery-results.json
+dns-diagnostic.json

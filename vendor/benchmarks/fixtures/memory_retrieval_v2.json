@@ -1,0 +1,831 @@
+{
+  "version": 2,
+  "description": "Frozen authored bilingual engineering retrieval regression set, not a real user distribution. Relevance requires the strategy to apply to the query as written, considering its trigger and conditions; a category/id prefix does not determine relevance. A lesson that only mentions the queried failure as a counterexample under a different applicability condition is not relevant. Generic checklists are not relevant. Exact strategy duplicates remain relevant documents and are separately measured. Version 2 corrects semantic label errors in version 1 without changing queries, memory texts, confidences or retrieval parameters. Do not alter labels after evaluating this version.",
+  "clock": 1790000000.0,
+  "owner": "executor",
+  "channelId": "group",
+  "memories": [
+    {
+      "id": "csv-bom-1",
+      "title": "Use utf-8-sig when decoding a BOM-prefixed CSV. 带 BOM 的 CSV 用 utf-8-sig 读取。",
+      "lesson": "Use utf-8-sig when decoding a BOM-prefixed CSV. 带 BOM 的 CSV 用 utf-8-sig 读取。",
+      "trigger": "CSV BOM UnicodeDecodeError 编码",
+      "conditions": "Python CSV input has UTF-8 BOM; CSV 文件读取编码",
+      "confidence": 0.68
+    },
+    {
+      "id": "csv-bom-2",
+      "title": "Inspect the CSV byte prefix before choosing an encoding. 先检查文件字节前缀再选择编码。",
+      "lesson": "Inspect the CSV byte prefix before choosing an encoding. 先检查文件字节前缀再选择编码。",
+      "trigger": "CSV BOM byte prefix 字节前缀",
+      "conditions": "Python CSV input has UTF-8 BOM; CSV 文件读取编码",
+      "confidence": 0.74
+    },
+    {
+      "id": "csv-bom-3",
+      "title": "Test CSV import with a BOM-prefixed fixture and preserve header names. 用 BOM 样本测试表头。",
+      "lesson": "Test CSV import with a BOM-prefixed fixture and preserve header names. 用 BOM 样本测试表头。",
+      "trigger": "CSV BOM import header 导入表头",
+      "conditions": "Python CSV input has UTF-8 BOM; CSV 文件读取编码",
+      "confidence": 0.8
+    },
+    {
+      "id": "csv-bom-near",
+      "title": "Choose csv.Sniffer for a CSV delimiter mismatch; a BOM UnicodeDecodeError is a different failure. 分隔",
+      "lesson": "Choose csv.Sniffer for a CSV delimiter mismatch; a BOM UnicodeDecodeError is a different failure. 分隔符错误不等同编码错误。",
+      "trigger": "CSV delimiter column mismatch 分隔符列错位",
+      "conditions": "Apply only to CSV delimiter column mismatch 分隔符列错位",
+      "confidence": 0.96
+    },
+    {
+      "id": "csv-bom-duplicate",
+      "title": "Use utf-8-sig when decoding a BOM-prefixed CSV. 带 BOM 的 CSV 用 utf-8-sig 读取。",
+      "lesson": "Use utf-8-sig when decoding a BOM-prefixed CSV. 带 BOM 的 CSV 用 utf-8-sig 读取。",
+      "trigger": "CSV BOM UnicodeDecodeError 编码",
+      "conditions": "Python CSV input has UTF-8 BOM; CSV 文件读取编码",
+      "confidence": 0.82
+    },
+    {
+      "id": "offline-import-1",
+      "title": "Replace pandas CSV loading with the Python csv standard library offline. 离线时用标准库 csv 替代 pandas。",
+      "lesson": "Replace pandas CSV loading with the Python csv standard library offline. 离线时用标准库 csv 替代 pandas。",
+      "trigger": "offline ModuleNotFoundError pandas 离线依赖缺失",
+      "conditions": "Docker network disabled; offline Python environment 禁网环境",
+      "confidence": 0.68
+    },
+    {
+      "id": "offline-import-2",
+      "title": "Check installed modules before selecting an offline dependency. 选择离线依赖前检查已有模块。",
+      "lesson": "Check installed modules before selecting an offline dependency. 选择离线依赖前检查已有模块。",
+      "trigger": "offline Python dependency installed modules 离线依赖",
+      "conditions": "Docker network disabled; offline Python environment 禁网环境",
+      "confidence": 0.74
+    },
+    {
+      "id": "offline-import-3",
+      "title": "Test the dependency-free CSV parser inside the same offline Docker image. 在同一离线镜像中测试无依赖解析器。",
+      "lesson": "Test the dependency-free CSV parser inside the same offline Docker image. 在同一离线镜像中测试无依赖解析器。",
+      "trigger": "offline Docker pandas import test 离线测试",
+      "conditions": "Docker network disabled; offline Python environment 禁网环境",
+      "confidence": 0.8
+    },
+    {
+      "id": "offline-import-near",
+      "title": "Pin compatible pandas versions when online pip dependency resolution fails; offline ModuleNotFoundEr",
+      "lesson": "Pin compatible pandas versions when online pip dependency resolution fails; offline ModuleNotFoundError requires a separate remedy. 在线冲突需要锁定版本。",
+      "trigger": "online pip package version conflict 在线版本冲突",
+      "conditions": "Apply only to online pip package version conflict 在线版本冲突",
+      "confidence": 0.96
+    },
+    {
+      "id": "overwrite-1",
+      "title": "Re-read the file and request fresh approval after its expectedSha256 changes. 文件哈希变化后重新读取并申请覆盖审批。",
+      "lesson": "Re-read the file and request fresh approval after its expectedSha256 changes. 文件哈希变化后重新读取并申请覆盖审批。",
+      "trigger": "file.write overwrite expectedSha256 changed 覆盖冲突",
+      "conditions": "Approval was issued before the existing file changed 已审批文件已变化",
+      "confidence": 0.68
+    },
+    {
+      "id": "overwrite-2",
+      "title": "Prefer an exact old/new file.patch when changing a small approved file. 小修改优先精确 old/new patch。",
+      "lesson": "Prefer an exact old/new file.patch when changing a small approved file. 小修改优先精确 old/new patch。",
+      "trigger": "overwrite file.patch exact old new 覆盖修改",
+      "conditions": "Approval was issued before the existing file changed 已审批文件已变化",
+      "confidence": 0.74
+    },
+    {
+      "id": "overwrite-3",
+      "title": "Preserve the user edit rather than retrying a stale approved overwrite. 不要用过期审批覆盖用户修改。",
+      "lesson": "Preserve the user edit rather than retrying a stale approved overwrite. 不要用过期审批覆盖用户修改。",
+      "trigger": "stale approval overwrite user edit 过期审批覆盖",
+      "conditions": "Approval was issued before the existing file changed 已审批文件已变化",
+      "confidence": 0.8
+    },
+    {
+      "id": "overwrite-near",
+      "title": "A new file.write creates content without an overwrite check; expectedSha256 is used for existing-fil",
+      "lesson": "A new file.write creates content without an overwrite check; expectedSha256 is used for existing-file approvals. 新建与覆盖不同。",
+      "trigger": "new file creation without existing content 新建文件",
+      "conditions": "Apply only to new file creation without existing content 新建文件",
+      "confidence": 0.96
+    },
+    {
+      "id": "overwrite-duplicate",
+      "title": "Re-read the file and request fresh approval after its expectedSha256 changes. 文件哈希变化后重新读取并申请覆盖审批。",
+      "lesson": "Re-read the file and request fresh approval after its expectedSha256 changes. 文件哈希变化后重新读取并申请覆盖审批。",
+      "trigger": "file.write overwrite expectedSha256 changed 覆盖冲突",
+      "conditions": "Approval was issued before the existing file changed 已审批文件已变化",
+      "confidence": 0.82
+    },
+    {
+      "id": "docker-timeout-1",
+      "title": "Stop the timed-out Docker run and inspect generated loops before retrying. Docker 超时先检查无限循环。",
+      "lesson": "Stop the timed-out Docker run and inspect generated loops before retrying. Docker 超时先检查无限循环。",
+      "trigger": "Docker code.run timeout infinite loop 容器执行超时",
+      "conditions": "Container starts successfully but generated Python never finishes 容器已启动",
+      "confidence": 0.68
+    },
+    {
+      "id": "docker-timeout-2",
+      "title": "Use a bounded input and explicit timeout for a reproducible code.run test. 用小输入和明确超时复现执行问题。",
+      "lesson": "Use a bounded input and explicit timeout for a reproducible code.run test. 用小输入和明确超时复现执行问题。",
+      "trigger": "Docker code.run timeout bounded input 超时复现",
+      "conditions": "Container starts successfully but generated Python never finishes 容器已启动",
+      "confidence": 0.74
+    },
+    {
+      "id": "docker-timeout-3",
+      "title": "Report timeout as a failed execution instead of declaring the script passed. 执行超时应报告失败。",
+      "lesson": "Report timeout as a failed execution instead of declaring the script passed. 执行超时应报告失败。",
+      "trigger": "Docker timeout failed execution 超时失败",
+      "conditions": "Container starts successfully but generated Python never finishes 容器已启动",
+      "confidence": 0.8
+    },
+    {
+      "id": "docker-timeout-near",
+      "title": "Start Docker Desktop when the daemon is unavailable; increasing code.run timeout does not repair a s",
+      "lesson": "Start Docker Desktop when the daemon is unavailable; increasing code.run timeout does not repair a socket connection. 引擎连接失败不应延长脚本超时。",
+      "trigger": "Docker daemon unavailable socket connection failed 引擎不可用",
+      "conditions": "Apply only to Docker daemon unavailable socket connection failed 引擎不可用",
+      "confidence": 0.96
+    },
+    {
+      "id": "git-rejected-1",
+      "title": "Fetch and inspect the fixed remote branch after a non-fast-forward rejection. 非快进拒绝后先检查远端提交。",
+      "lesson": "Fetch and inspect the fixed remote branch after a non-fast-forward rejection. 非快进拒绝后先检查远端提交。",
+      "trigger": "git.push non-fast-forward remote commit changed 推送拒绝",
+      "conditions": "Fixed remote branch has new commits 远端分支有新提交",
+      "confidence": 0.68
+    },
+    {
+      "id": "git-rejected-2",
+      "title": "Request new approval bound to the reconciled commit before git.push. 合并远端变更后按新 commit 重新申请推送审批。",
+      "lesson": "Request new approval bound to the reconciled commit before git.push. 合并远端变更后按新 commit 重新申请推送审批。",
+      "trigger": "git.push non-fast-forward approval commit 推送审批",
+      "conditions": "Fixed remote branch has new commits 远端分支有新提交",
+      "confidence": 0.74
+    },
+    {
+      "id": "git-rejected-3",
+      "title": "Never use force push to bypass a non-fast-forward rejection. 非快进拒绝不能强制推送绕过。",
+      "lesson": "Never use force push to bypass a non-fast-forward rejection. 非快进拒绝不能强制推送绕过。",
+      "trigger": "git.push non-fast-forward force denied 禁止强推",
+      "conditions": "Fixed remote branch has new commits 远端分支有新提交",
+      "confidence": 0.8
+    },
+    {
+      "id": "git-rejected-near",
+      "title": "Configure approved credentials for git.push authentication failure; a non-fast-forward rejection con",
+      "lesson": "Configure approved credentials for git.push authentication failure; a non-fast-forward rejection concerns remote commit history. 认证失败与历史冲突不同。",
+      "trigger": "git.push authentication 401 credential missing 认证失败",
+      "conditions": "Apply only to git.push authentication 401 credential missing 认证失败",
+      "confidence": 0.96
+    },
+    {
+      "id": "http-rate-1",
+      "title": "Respect Retry-After and retry HTTP 429 with bounded backoff. HTTP 429 按 Retry-After 有界退避。",
+      "lesson": "Respect Retry-After and retry HTTP 429 with bounded backoff. HTTP 429 按 Retry-After 有界退避。",
+      "trigger": "web.fetch HTTP 429 Retry-After rate limit 请求限流",
+      "conditions": "Public source temporarily rate limits requests 公开来源限流",
+      "confidence": 0.68
+    },
+    {
+      "id": "http-rate-2",
+      "title": "Cache a successfully fetched public page to reduce repeated rate-limited requests. 缓存公开页面以减少限流请求。",
+      "lesson": "Cache a successfully fetched public page to reduce repeated rate-limited requests. 缓存公开页面以减少限流请求。",
+      "trigger": "HTTP 429 repeated web.fetch cache 限流缓存",
+      "conditions": "Public source temporarily rate limits requests 公开来源限流",
+      "confidence": 0.74
+    },
+    {
+      "id": "http-rate-3",
+      "title": "Keep the source URL and disclose an incomplete fetch if rate-limit retries fail. 限流仍失败时保留来源并说明不完整。",
+      "lesson": "Keep the source URL and disclose an incomplete fetch if rate-limit retries fail. 限流仍失败时保留来源并说明不完整。",
+      "trigger": "HTTP 429 source URL incomplete 限流来源",
+      "conditions": "Public source temporarily rate limits requests 公开来源限流",
+      "confidence": 0.8
+    },
+    {
+      "id": "http-rate-near",
+      "title": "Do not bypass HTTP 403 access control; HTTP 429 Retry-After is a separate transient rate limit. 访问拒绝",
+      "lesson": "Do not bypass HTTP 403 access control; HTTP 429 Retry-After is a separate transient rate limit. 访问拒绝不能靠绕过处理。",
+      "trigger": "web.fetch HTTP 403 forbidden access denied 访问拒绝",
+      "conditions": "Apply only to web.fetch HTTP 403 forbidden access denied 访问拒绝",
+      "confidence": 0.96
+    },
+    {
+      "id": "http-rate-duplicate",
+      "title": "Respect Retry-After and retry HTTP 429 with bounded backoff. HTTP 429 按 Retry-After 有界退避。",
+      "lesson": "Respect Retry-After and retry HTTP 429 with bounded backoff. HTTP 429 按 Retry-After 有界退避。",
+      "trigger": "web.fetch HTTP 429 Retry-After rate limit 请求限流",
+      "conditions": "Public source temporarily rate limits requests 公开来源限流",
+      "confidence": 0.82
+    },
+    {
+      "id": "json-parse-1",
+      "title": "Remove the trailing comma and validate JSON syntax before schema checks. 尾逗号先修 JSON 语法再校验结构。",
+      "lesson": "Remove the trailing comma and validate JSON syntax before schema checks. 尾逗号先修 JSON 语法再校验结构。",
+      "trigger": "JSONDecodeError trailing comma invalid JSON 解析失败",
+      "conditions": "Input JSON has a trailing comma 输入尾逗号",
+      "confidence": 0.68
+    },
+    {
+      "id": "json-parse-2",
+      "title": "Report JSONDecodeError line and column so the user can locate malformed input. 报告 JSON 解析错误的行列位置。",
+      "lesson": "Report JSONDecodeError line and column so the user can locate malformed input. 报告 JSON 解析错误的行列位置。",
+      "trigger": "JSONDecodeError line column malformed input 解析位置",
+      "conditions": "Input JSON has a trailing comma 输入尾逗号",
+      "confidence": 0.74
+    },
+    {
+      "id": "json-parse-3",
+      "title": "Add a malformed trailing-comma fixture to the JSON parser test. 为 JSON 解析器加入尾逗号失败样本。",
+      "lesson": "Add a malformed trailing-comma fixture to the JSON parser test. 为 JSON 解析器加入尾逗号失败样本。",
+      "trigger": "JSONDecodeError trailing comma parser test 尾逗号测试",
+      "conditions": "Input JSON has a trailing comma 输入尾逗号",
+      "confidence": 0.8
+    },
+    {
+      "id": "json-parse-near",
+      "title": "Validate required schema fields after parsing valid JSON; JSONDecodeError trailing comma is syntax r",
+      "lesson": "Validate required schema fields after parsing valid JSON; JSONDecodeError trailing comma is syntax rather than missing fields. 合法 JSON 缺字段需要结构校验。",
+      "trigger": "valid JSON missing required schema property 缺少必填字段",
+      "conditions": "Apply only to valid JSON missing required schema property 缺少必填字段",
+      "confidence": 0.96
+    },
+    {
+      "id": "review-revision-1",
+      "title": "Invalidate review evidence when the target revision or artifact hash changes. revision 或产物哈希变化后旧审核失效",
+      "lesson": "Invalidate review evidence when the target revision or artifact hash changes. revision 或产物哈希变化后旧审核失效。",
+      "trigger": "Reviewer validation revision artifact hash mismatch 审核失效",
+      "conditions": "Executor artifact changed after independent review 审核后产物变化",
+      "confidence": 0.68
+    },
+    {
+      "id": "review-revision-2",
+      "title": "Run Reviewer code.test independently against the current imported artifact. Reviewer 对当前导入产物独立执行 cod",
+      "lesson": "Run Reviewer code.test independently against the current imported artifact. Reviewer 对当前导入产物独立执行 code.test。",
+      "trigger": "Reviewer revision code.test current artifact 独立测试",
+      "conditions": "Executor artifact changed after independent review 审核后产物变化",
+      "confidence": 0.74
+    },
+    {
+      "id": "review-revision-3",
+      "title": "Bind the new review result to exact revision and artifact hashes. 新审核结果绑定准确 revision 与哈希。",
+      "lesson": "Bind the new review result to exact revision and artifact hashes. 新审核结果绑定准确 revision 与哈希。",
+      "trigger": "Reviewer validation revision artifact hashes 审核绑定",
+      "conditions": "Executor artifact changed after independent review 审核后产物变化",
+      "confidence": 0.8
+    },
+    {
+      "id": "review-revision-near",
+      "title": "Executor code.test success is self testing, not Reviewer independent validation; revision and artifa",
+      "lesson": "Executor code.test success is self testing, not Reviewer independent validation; revision and artifact hashes identify the target. 执行员自测不能冒充独立审核。",
+      "trigger": "Executor self test successful without independent review 执行员自测",
+      "conditions": "Apply only to Executor self test successful without independent review 执行员自测",
+      "confidence": 0.96
+    },
+    {
+      "id": "review-revision-duplicate",
+      "title": "Invalidate review evidence when the target revision or artifact hash changes. revision 或产物哈希变化后旧审核失效",
+      "lesson": "Invalidate review evidence when the target revision or artifact hash changes. revision 或产物哈希变化后旧审核失效。",
+      "trigger": "Reviewer validation revision artifact hash mismatch 审核失效",
+      "conditions": "Executor artifact changed after independent review 审核后产物变化",
+      "confidence": 0.82
+    },
+    {
+      "id": "memory-private-1",
+      "title": "Recall private memory only for the matching owner and private channel. 私聊记忆只允许原 owner 与频道召回。",
+      "lesson": "Recall private memory only for the matching owner and private channel. 私聊记忆只允许原 owner 与频道召回。",
+      "trigger": "private memory channel scope owner isolation 私聊记忆隔离",
+      "conditions": "Private strategy must stay in its original owner channel 私有上下文",
+      "confidence": 0.68
+    },
+    {
+      "id": "memory-private-2",
+      "title": "Require explicit human sharing before another agent retrieves a verified strategy. 跨 Agent 召回已验证记忆须人",
+      "lesson": "Require explicit human sharing before another agent retrieves a verified strategy. 跨 Agent 召回已验证记忆须人工明确分享。",
+      "trigger": "private memory cross agent human sharing 私聊分享",
+      "conditions": "Private strategy must stay in its original owner channel 私有上下文",
+      "confidence": 0.74
+    },
+    {
+      "id": "memory-private-3",
+      "title": "Retain original provenance when sharing a private strategy. 分享私有经验时保留原始来源。",
+      "lesson": "Retain original provenance when sharing a private strategy. 分享私有经验时保留原始来源。",
+      "trigger": "private memory share provenance owner 私有来源",
+      "conditions": "Private strategy must stay in its original owner channel 私有上下文",
+      "confidence": 0.8
+    },
+    {
+      "id": "memory-private-near",
+      "title": "Candidate memory requires evidence confirmation even when its private channel and owner scope match.",
+      "lesson": "Candidate memory requires evidence confirmation even when its private channel and owner scope match. 未确认候选不能召回。",
+      "trigger": "candidate memory missing confirmation verification 待确认记忆",
+      "conditions": "Apply only to candidate memory missing confirmation verification 待确认记忆",
+      "confidence": 0.96
+    },
+    {
+      "id": "research-source-1",
+      "title": "Prefer the official paper DOI or proceedings page for a research citation. 研究引用优先论文 DOI 或官方会议页。",
+      "lesson": "Prefer the official paper DOI or proceedings page for a research citation. 研究引用优先论文 DOI 或官方会议页。",
+      "trigger": "research DOI primary paper citation official source 论文引用",
+      "conditions": "A scientific claim needs a primary source 科学结论来源",
+      "confidence": 0.68
+    },
+    {
+      "id": "research-source-2",
+      "title": "Separate the paper experimental result from your inference when citing research. 引用时区分论文实验结论与自己的推断。",
+      "lesson": "Separate the paper experimental result from your inference when citing research. 引用时区分论文实验结论与自己的推断。",
+      "trigger": "research paper experimental claim citation 论文结论引用",
+      "conditions": "A scientific claim needs a primary source 科学结论来源",
+      "confidence": 0.74
+    },
+    {
+      "id": "research-source-3",
+      "title": "Record title, venue, year and exact source URL with each research claim. 每项结论记录标题会议年份和准确 URL。",
+      "lesson": "Record title, venue, year and exact source URL with each research claim. 每项结论记录标题会议年份和准确 URL。",
+      "trigger": "research paper venue year source URL 论文来源",
+      "conditions": "A scientific claim needs a primary source 科学结论来源",
+      "confidence": 0.8
+    },
+    {
+      "id": "research-source-near",
+      "title": "A blog opinion is not primary paper evidence even if it mentions a DOI, citation, venue and research",
+      "lesson": "A blog opinion is not primary paper evidence even if it mentions a DOI, citation, venue and research result. 博客观点不能当论文实验证据。",
+      "trigger": "blog product opinion without experimental evidence 博客观点",
+      "conditions": "Apply only to blog product opinion without experimental evidence 博客观点",
+      "confidence": 0.96
+    },
+    {
+      "id": "csv-delimiter-1",
+      "title": "Detect a semicolon CSV delimiter before splitting columns. 分号 CSV 先确认分隔符再拆列。",
+      "lesson": "Detect a semicolon CSV delimiter before splitting columns. 分号 CSV 先确认分隔符再拆列。",
+      "trigger": "CSV delimiter semicolon column mismatch 分隔符错位",
+      "conditions": "CSV decodes correctly but separator is semicolon 编码正常",
+      "confidence": 0.68
+    },
+    {
+      "id": "csv-delimiter-2",
+      "title": "Read quoted CSV cells with csv.reader instead of manual split. 用 csv.reader 处理带引号单元格。",
+      "lesson": "Read quoted CSV cells with csv.reader instead of manual split. 用 csv.reader 处理带引号单元格。",
+      "trigger": "CSV delimiter quoted cells csv.reader 分隔符引号",
+      "conditions": "CSV decodes correctly but separator is semicolon 编码正常",
+      "confidence": 0.74
+    },
+    {
+      "id": "csv-delimiter-3",
+      "title": "Test a semicolon-delimited fixture with quoted delimiters and exact column counts. 用分号与引号样本测试列数。",
+      "lesson": "Test a semicolon-delimited fixture with quoted delimiters and exact column counts. 用分号与引号样本测试列数。",
+      "trigger": "CSV semicolon delimiter column test 分隔符测试",
+      "conditions": "CSV decodes correctly but separator is semicolon 编码正常",
+      "confidence": 0.8
+    },
+    {
+      "id": "csv-delimiter-near",
+      "title": "Decode BOM CSV with utf-8-sig when UnicodeDecodeError occurs; a delimiter semicolon mismatch happens",
+      "lesson": "Decode BOM CSV with utf-8-sig when UnicodeDecodeError occurs; a delimiter semicolon mismatch happens after successful decoding. 编码错误和分隔符错位不同。",
+      "trigger": "CSV BOM UnicodeDecodeError encoding failure 编码失败",
+      "conditions": "Apply only to CSV BOM UnicodeDecodeError encoding failure 编码失败",
+      "confidence": 0.96
+    },
+    {
+      "id": "http-forbidden-1",
+      "title": "Report HTTP 403 access denied and seek an allowed official source. HTTP 403 应说明访问拒绝并寻找可用官方来源。",
+      "lesson": "Report HTTP 403 access denied and seek an allowed official source. HTTP 403 应说明访问拒绝并寻找可用官方来源。",
+      "trigger": "web.fetch HTTP 403 forbidden access denied 访问拒绝",
+      "conditions": "Public URL denies access 站点拒绝访问",
+      "confidence": 0.68
+    },
+    {
+      "id": "http-forbidden-2",
+      "title": "Do not bypass the source access controls after HTTP 403. HTTP 403 后不要绕过来源访问控制。",
+      "lesson": "Do not bypass the source access controls after HTTP 403. HTTP 403 后不要绕过来源访问控制。",
+      "trigger": "HTTP 403 forbidden access controls 禁止绕过",
+      "conditions": "Public URL denies access 站点拒绝访问",
+      "confidence": 0.74
+    },
+    {
+      "id": "http-forbidden-3",
+      "title": "Preserve the blocked URL as a source limitation instead of inventing fetched text. 保留拒绝 URL 并说明无法获取正",
+      "lesson": "Preserve the blocked URL as a source limitation instead of inventing fetched text. 保留拒绝 URL 并说明无法获取正文。",
+      "trigger": "HTTP 403 source limitation blocked URL 来源受限",
+      "conditions": "Public URL denies access 站点拒绝访问",
+      "confidence": 0.8
+    },
+    {
+      "id": "http-forbidden-near",
+      "title": "Retry HTTP 429 with Retry-After bounded backoff; forbidden HTTP 403 access denied is not a transient",
+      "lesson": "Retry HTTP 429 with Retry-After bounded backoff; forbidden HTTP 403 access denied is not a transient rate limit. 限流可退避，拒绝访问不可绕过。",
+      "trigger": "web.fetch HTTP 429 Retry-After transient rate limit 请求限流",
+      "conditions": "Apply only to web.fetch HTTP 429 Retry-After transient rate limit 请求限流",
+      "confidence": 0.96
+    },
+    {
+      "id": "generic-project",
+      "title": "General project checklist",
+      "lesson": "For every project task, inspect Python CSV JSON Docker code.run file.write git.push web.fetch HTTP memory Reviewer research source approval error input test output and report. 项目任务需检查文件输入输出、错误、测试、来源与报告。",
+      "trigger": "general project task 项目任务",
+      "conditions": "general workflow 通用工作流",
+      "confidence": 0.99
+    },
+    {
+      "id": "generic-troubleshooting",
+      "title": "Troubleshooting checklist",
+      "lesson": "When an error or failure appears, inspect code, file, input, output, dependency, encoding, delimiter, approval, commit, Docker timeout, HTTP status, JSON syntax, revision, validation, memory and source citation. 出错时记录上下文。",
+      "trigger": "general failure error 通用错误",
+      "conditions": "unspecified problem 未定位问题",
+      "confidence": 0.99
+    },
+    {
+      "id": "generic-report",
+      "title": "Write a status report",
+      "lesson": "The final report lists source URL, test result, file artifact, code revision, approval and task status. 最终报告写清来源与任务结果。",
+      "trigger": "final report status 汇总报告",
+      "conditions": "task completed 任务结束",
+      "confidence": 0.99
+    }
+  ],
+  "queries": [
+    {
+      "id": "csv-bom-en",
+      "query": "Python CSV import failed with UnicodeDecodeError on a UTF-8 BOM file",
+      "relevant": [
+        "csv-bom-1",
+        "csv-bom-2",
+        "csv-bom-3",
+        "csv-bom-duplicate",
+        "csv-delimiter-near"
+      ],
+      "category": "csv-bom",
+      "language": "en"
+    },
+    {
+      "id": "csv-bom-zh",
+      "query": "CSV 读取遇到 BOM 和 UnicodeDecodeError，编码应该怎么处理？",
+      "relevant": [
+        "csv-bom-1",
+        "csv-bom-2",
+        "csv-bom-3",
+        "csv-bom-duplicate",
+        "csv-delimiter-near"
+      ],
+      "category": "csv-bom",
+      "language": "zh"
+    },
+    {
+      "id": "offline-import-en",
+      "query": "Fix ModuleNotFoundError for pandas in offline Docker without network",
+      "relevant": [
+        "offline-import-2"
+      ],
+      "category": "offline-import",
+      "language": "en"
+    },
+    {
+      "id": "offline-import-zh",
+      "query": "离线 Docker 没网络，Python import pandas 依赖缺失怎么修？",
+      "relevant": [
+        "offline-import-2"
+      ],
+      "category": "offline-import",
+      "language": "zh"
+    },
+    {
+      "id": "overwrite-en",
+      "query": "file.write overwrite approval failed because expectedSha256 changed after a user edit",
+      "relevant": [
+        "overwrite-1",
+        "overwrite-2",
+        "overwrite-3",
+        "overwrite-duplicate"
+      ],
+      "category": "overwrite",
+      "language": "en"
+    },
+    {
+      "id": "overwrite-zh",
+      "query": "file.write 覆盖审批后用户改了文件，expectedSha256 变化该怎么办？",
+      "relevant": [
+        "overwrite-1",
+        "overwrite-2",
+        "overwrite-3",
+        "overwrite-duplicate"
+      ],
+      "category": "overwrite",
+      "language": "zh"
+    },
+    {
+      "id": "docker-timeout-en",
+      "query": "Docker code.run starts but times out on an infinite loop",
+      "relevant": [
+        "docker-timeout-1",
+        "docker-timeout-2",
+        "docker-timeout-3"
+      ],
+      "category": "docker-timeout",
+      "language": "en"
+    },
+    {
+      "id": "docker-timeout-zh",
+      "query": "Docker 容器已经启动，code.run 无限循环导致 timeout 超时怎么处理？",
+      "relevant": [
+        "docker-timeout-1",
+        "docker-timeout-2",
+        "docker-timeout-3"
+      ],
+      "category": "docker-timeout",
+      "language": "zh"
+    },
+    {
+      "id": "git-rejected-en",
+      "query": "git.push rejected non-fast-forward because the remote branch commit changed",
+      "relevant": [
+        "git-rejected-1",
+        "git-rejected-2",
+        "git-rejected-3"
+      ],
+      "category": "git-rejected",
+      "language": "en"
+    },
+    {
+      "id": "git-rejected-zh",
+      "query": "git.push 远端有新 commit，non-fast-forward 推送拒绝怎么办？",
+      "relevant": [
+        "git-rejected-1",
+        "git-rejected-2",
+        "git-rejected-3"
+      ],
+      "category": "git-rejected",
+      "language": "zh"
+    },
+    {
+      "id": "http-rate-en",
+      "query": "web.fetch returned HTTP 429 with Retry-After after repeated public page requests",
+      "relevant": [
+        "http-rate-1",
+        "http-rate-2",
+        "http-rate-3",
+        "http-rate-duplicate",
+        "http-forbidden-near"
+      ],
+      "category": "http-rate",
+      "language": "en"
+    },
+    {
+      "id": "http-rate-zh",
+      "query": "公开页面 web.fetch HTTP 429 请求限流，有 Retry-After 应怎样重试？",
+      "relevant": [
+        "http-rate-1",
+        "http-rate-2",
+        "http-rate-3",
+        "http-rate-duplicate",
+        "http-forbidden-near"
+      ],
+      "category": "http-rate",
+      "language": "zh"
+    },
+    {
+      "id": "json-parse-en",
+      "query": "JSONDecodeError occurs on invalid JSON with a trailing comma",
+      "relevant": [
+        "json-parse-1",
+        "json-parse-2",
+        "json-parse-3"
+      ],
+      "category": "json-parse",
+      "language": "en"
+    },
+    {
+      "id": "json-parse-zh",
+      "query": "JSON 输入有 trailing comma 尾逗号，JSONDecodeError 解析失败怎么修？",
+      "relevant": [
+        "json-parse-1",
+        "json-parse-2",
+        "json-parse-3"
+      ],
+      "category": "json-parse",
+      "language": "zh"
+    },
+    {
+      "id": "review-revision-en",
+      "query": "Reviewer validation has a revision artifact hash mismatch after Executor changed code",
+      "relevant": [
+        "review-revision-1",
+        "review-revision-2",
+        "review-revision-3",
+        "review-revision-duplicate"
+      ],
+      "category": "review-revision",
+      "language": "en"
+    },
+    {
+      "id": "review-revision-zh",
+      "query": "Executor 修改产物后 Reviewer 的 revision 与 artifact hash 不匹配，审核还有效吗？",
+      "relevant": [
+        "review-revision-1",
+        "review-revision-2",
+        "review-revision-3",
+        "review-revision-duplicate"
+      ],
+      "category": "review-revision",
+      "language": "zh"
+    },
+    {
+      "id": "memory-private-en",
+      "query": "Keep private memory isolated by owner and channel before cross agent sharing",
+      "relevant": [
+        "memory-private-1",
+        "memory-private-2",
+        "memory-private-3"
+      ],
+      "category": "memory-private",
+      "language": "en"
+    },
+    {
+      "id": "memory-private-zh",
+      "query": "private 私聊 memory 的 owner 和 channel scope 怎么隔离，跨 Agent 分享要审批吗？",
+      "relevant": [
+        "memory-private-1",
+        "memory-private-2",
+        "memory-private-3"
+      ],
+      "category": "memory-private",
+      "language": "zh"
+    },
+    {
+      "id": "research-source-en",
+      "query": "Find the primary paper DOI official source and citation for a research experimental claim",
+      "relevant": [
+        "research-source-1",
+        "research-source-2",
+        "research-source-3"
+      ],
+      "category": "research-source",
+      "language": "en"
+    },
+    {
+      "id": "research-source-zh",
+      "query": "研究结论要引用 primary paper，DOI 官方论文来源和 venue year 怎么核实？",
+      "relevant": [
+        "research-source-1",
+        "research-source-2",
+        "research-source-3"
+      ],
+      "category": "research-source",
+      "language": "zh"
+    },
+    {
+      "id": "csv-delimiter-en",
+      "query": "CSV decodes successfully but semicolon delimiter creates a column mismatch",
+      "relevant": [
+        "csv-delimiter-1",
+        "csv-delimiter-2",
+        "csv-delimiter-3",
+        "csv-bom-near"
+      ],
+      "category": "csv-delimiter",
+      "language": "en"
+    },
+    {
+      "id": "csv-delimiter-zh",
+      "query": "CSV 编码正常，但 semicolon 分号 delimiter 导致列错位，怎么解析？",
+      "relevant": [
+        "csv-delimiter-1",
+        "csv-delimiter-2",
+        "csv-delimiter-3",
+        "csv-bom-near"
+      ],
+      "category": "csv-delimiter",
+      "language": "zh"
+    },
+    {
+      "id": "http-forbidden-en",
+      "query": "web.fetch returned HTTP 403 forbidden access denied for the source URL",
+      "relevant": [
+        "http-forbidden-1",
+        "http-forbidden-2",
+        "http-forbidden-3",
+        "http-rate-near"
+      ],
+      "category": "http-forbidden",
+      "language": "en"
+    },
+    {
+      "id": "http-forbidden-zh",
+      "query": "web.fetch HTTP 403 forbidden 访问拒绝，能否绕过站点限制？",
+      "relevant": [
+        "http-forbidden-1",
+        "http-forbidden-2",
+        "http-forbidden-3",
+        "http-rate-near"
+      ],
+      "category": "http-forbidden",
+      "language": "zh"
+    }
+  ],
+  "labelReview": {
+    "method": "Semantic review of all 24 fixed queries against all 55 strategy texts, triggers and conditions; candidate rankings were not consulted.",
+    "parentFixtureSha256": "6a3286f15e84e823821fa685f6df028a06003f39b9bad4f65edd8b6fbb7ffd9f",
+    "unchanged": [
+      "clock",
+      "owner",
+      "channelId",
+      "all memory records",
+      "query text",
+      "query category",
+      "query language"
+    ],
+    "addedRelevantAssignments": 8,
+    "removedRelevantAssignments": 4,
+    "changes": [
+      {
+        "queryId": "csv-bom-en",
+        "added": [
+          "csv-delimiter-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to BOM/UnicodeDecodeError encoding failure and recommends utf-8-sig; its unrelated id prefix does not make it a delimiter-only strategy."
+      },
+      {
+        "queryId": "csv-bom-zh",
+        "added": [
+          "csv-delimiter-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to BOM/UnicodeDecodeError encoding failure and recommends utf-8-sig; its unrelated id prefix does not make it a delimiter-only strategy."
+      },
+      {
+        "queryId": "offline-import-en",
+        "added": [],
+        "removed": [
+          "offline-import-1",
+          "offline-import-3"
+        ],
+        "rationale": "The query states missing pandas in an offline Docker environment, but does not state a CSV-loading/parsing use case. These two strategies assume that use case; csv is not a general substitute for pandas. Checking installed modules remains applicable."
+      },
+      {
+        "queryId": "offline-import-zh",
+        "added": [],
+        "removed": [
+          "offline-import-1",
+          "offline-import-3"
+        ],
+        "rationale": "The query states missing pandas in an offline Docker environment, but does not state a CSV-loading/parsing use case. These two strategies assume that use case; csv is not a general substitute for pandas. Checking installed modules remains applicable."
+      },
+      {
+        "queryId": "http-rate-en",
+        "added": [
+          "http-forbidden-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to HTTP 429/Retry-After rate limiting and recommends bounded backoff; it mentions 403 only to distinguish a separate failure."
+      },
+      {
+        "queryId": "http-rate-zh",
+        "added": [
+          "http-forbidden-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to HTTP 429/Retry-After rate limiting and recommends bounded backoff; it mentions 403 only to distinguish a separate failure."
+      },
+      {
+        "queryId": "csv-delimiter-en",
+        "added": [
+          "csv-bom-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to CSV delimiter/column mismatch and recommends csv.Sniffer; it mentions BOM only to distinguish a separate failure."
+      },
+      {
+        "queryId": "csv-delimiter-zh",
+        "added": [
+          "csv-bom-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to CSV delimiter/column mismatch and recommends csv.Sniffer; it mentions BOM only to distinguish a separate failure."
+      },
+      {
+        "queryId": "http-forbidden-en",
+        "added": [
+          "http-rate-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to HTTP 403/access denied and prohibits bypassing access controls; it mentions 429 only to distinguish a separate failure."
+      },
+      {
+        "queryId": "http-forbidden-zh",
+        "added": [
+          "http-rate-near"
+        ],
+        "removed": [],
+        "rationale": "This strategy explicitly applies to HTTP 403/access denied and prohibits bypassing access controls; it mentions 429 only to distinguish a separate failure."
+      }
+    ],
+    "limitations": [
+      "Authored lexical retrieval regression only; not an independently collected agent-task benchmark.",
+      "Binary relevance accepts applicable troubleshooting/validation steps without claiming that a single step fully resolves the task.",
+      "Numbers from version 1 must not be presented as final results after these corrections."
+    ]
+  }
+}
